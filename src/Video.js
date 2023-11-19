@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Tesseract from 'tesseract.js';
-import { exec } from 'fluent-ffmpeg';
 
-const Video = () => {
+const App = () => {
   const inputFileRef = useRef(null);
   const [imageSrc, setImageSrc] = useState('');
   const [textFromImage, setTextFromImage] = useState('');
@@ -42,25 +41,29 @@ const Video = () => {
     if (textFromImage && selectedVideo) {
       const inputVideoPath = URL.createObjectURL(selectedVideo);
 
-      // Define output video path
-      const outputVideoPath = 'outputVideo.mp4';
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
 
-      // Run ffmpeg command to overlay text on the video
-      exec()
-        .input(inputVideoPath)
-        .videoCodec('libx264')
-        .inputFormat('lavfi')
-        .complexFilter([
-          `[0:v]drawtext=text='${textFromImage}':fontsize=24:fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2[outv]`,
-        ])
-        .output(outputVideoPath)
-        .on('end', () => {
-          console.log('Video created successfully');
-        })
-        .on('error', (err) => {
-          console.error('Error creating video:', err);
-        })
-        .run();
+      const video = document.createElement('video');
+      video.crossOrigin = 'anonymous';
+      video.src = inputVideoPath;
+
+      video.onloadeddata = () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        ctx.drawImage(video, 0, 0);
+
+        ctx.font = '30px Arial';
+        ctx.fillStyle = 'white';
+        ctx.fillText(textFromImage, canvas.width / 2, canvas.height / 2);
+
+        const outputVideoDataUrl = canvas.toDataURL('video/webm');
+        const outputVideo = document.createElement('video');
+        outputVideo.src = outputVideoDataUrl;
+        outputVideo.controls = true;
+        document.body.appendChild(outputVideo);
+      };
     } else {
       setError('Please choose an image and upload a video before generating the new video.');
     }
@@ -89,4 +92,4 @@ const Video = () => {
   );
 };
 
-export default Video;
+export default App;
