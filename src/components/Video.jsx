@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Tesseract from 'tesseract.js';
 
-const App = () => {
+const Video = () => {
   const inputFileRef = useRef(null);
   const [imageSrc, setImageSrc] = useState('');
   const [textFromImage, setTextFromImage] = useState('');
@@ -62,7 +62,7 @@ const App = () => {
         const outputVideo = document.createElement('video');
         outputVideo.src = outputVideoDataUrl;
         outputVideo.controls = true;
-        document.body.appendChild(outputVideo);
+        document.body.VideoendChild(outputVideo);
       };
     } else {
       setError('Please choose an image and upload a video before generating the new video.');
@@ -92,4 +92,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Video;

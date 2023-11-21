@@ -11,7 +11,8 @@
     "fluent-ffmpeg": "^2.1.2",
     "install": "^0.13.0",
     "npm": "^10.2.4",
-    "path-browserify": "^1.0.1",
+    "officegen": "^0.6.5",
+    "pdfmake": "^0.2.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-html5-video-editor": "^1.2.0",
@@ -51,5 +52,14 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "archiver": "^6.0.1",
+    "browserify-zlib": "^0.2.0",
+    "fs": "^0.0.1-security",
+    "path-browserify": "^1.0.1",
+    "readable-stream": "^4.4.2",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.5"
+  }
 }
