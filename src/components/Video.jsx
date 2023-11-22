@@ -1,95 +1,143 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Tesseract from 'tesseract.js';
+import { useDropzone } from 'react-dropzone';
 
 const Video = () => {
-  const inputFileRef = useRef(null);
-  const [imageSrc, setImageSrc] = useState('');
-  const [textFromImage, setTextFromImage] = useState('');
-  const [selectedVideo, setSelectedVideo] = useState(null);
-  const [error, setError] = useState('');
+  const [image, setImage] = useState(null);
+  const [extractedText, setExtractedText] = useState('');
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
+  const onDrop = (acceptedFiles) => {
+    const reader = new FileReader();
+    const file = acceptedFiles[0];
 
-    if (file) {
-      try {
-        const imageSrc = URL.createObjectURL(file);
-        setImageSrc(imageSrc);
-        await convertImageToText(imageSrc);
-      } catch (error) {
-        setError('Error loading the image. Please try again.');
-      }
-    }
+    reader.onload = (event) => {
+      setImage(event.target.result);
+      extractText(event.target.result);
+    };
+    reader.readAsDataURL(file);
   };
 
-  const convertImageToText = async (imageSrc) => {
-    try {
-      const { data: { text } } = await Tesseract.recognize(imageSrc, 'eng');
-      setTextFromImage(text);
-      setError('');
-    } catch (error) {
-      setError('Error processing image. Please try again.');
-    }
+  const extractText = (imageData) => {
+    Tesseract.recognize(
+      imageData,
+      'eng', // English language
+      { logger: (info) => console.log(info) } // You can remove this logger if not needed
+    ).then(({ data: { text } }) => {
+      setExtractedText(text);
+    });
   };
 
-  const handleVideoUpload = (event) => {
-    const file = event.target.files[0];
-    setSelectedVideo(file);
-  };
+  const createVideo = () => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const framesPerSecond = 20;
+    const seconds = 3;
+    const frames = framesPerSecond * seconds;
+    const frameInterval = 2000 / framesPerSecond;
+  
+    canvas.width = 320;
+    canvas.height = 240;
+    document.body.appendChild(canvas);
 
-  const handleGenerateVideo = () => {
-    if (textFromImage && selectedVideo) {
-      const inputVideoPath = URL.createObjectURL(selectedVideo);
-
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-
-      const video = document.createElement('video');
-      video.crossOrigin = 'anonymous';
-      video.src = inputVideoPath;
-
-      video.onloadeddata = () => {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
-        ctx.drawImage(video, 0, 0);
-
-        ctx.font = '30px Arial';
-        ctx.fillStyle = 'white';
-        ctx.fillText(textFromImage, canvas.width / 2, canvas.height / 2);
-
-        const outputVideoDataUrl = canvas.toDataURL('video/webm');
-        const outputVideo = document.createElement('video');
-        outputVideo.src = outputVideoDataUrl;
-        outputVideo.controls = true;
-        document.body.VideoendChild(outputVideo);
+    const drawFrame = (text, frame) => {
+      const lines = text.split('\n');
+      const lineHeight = 20; // Adjust the line height as needed
+    
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+      ctx.fillStyle = 'white';
+      ctx.font = '12px Arial';
+    
+      lines.forEach((line, index) => {
+        const textWidth = ctx.measureText(line).width;
+        let xPos = (frame * 10) % (canvas.width + textWidth);
+        let yPos = canvas.height / 2 + index * lineHeight;
+    
+        // Draw each line at the calculated position
+        ctx.fillText(line, xPos, yPos);
+      });
+    };
+    
+  
+    const startRecording = () => {
+      const mediaChunks = [];
+      const mediaRecorder = new MediaRecorder(canvas.captureStream(framesPerSecond));
+  
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          mediaChunks.push(event.data);
+        }
       };
-    } else {
-      setError('Please choose an image and upload a video before generating the new video.');
-    }
+  
+      mediaRecorder.onstop = () => {
+        const mediaBlob = new Blob(mediaChunks, { type: 'video/webm' });
+        const videoUrl = URL.createObjectURL(mediaBlob);
+  
+        // Display the video or handle it as needed
+        const video = document.createElement('video');
+        video.src = videoUrl;
+        video.controls = true;
+        document.body.appendChild(video);
+        document.body.style.width ="200px";
+        document.body.style.height="200px"
+      };
+  
+      mediaRecorder.start();
+  
+      for (let frame = 0; frame < frames; frame++) {
+        setTimeout(() => {
+          drawFrame(extractedText, frame);
+          mediaRecorder.requestData();
+        }, frame * frameInterval);
+      }
+  
+      setTimeout(() => {
+        mediaRecorder.stop();
+      }, frames * frameInterval);
+    };
+    
+    startRecording();
   };
+  
 
   return (
     <div>
-      <h1>Image to Video Converter</h1>
-
-      <input type="file" accept="image/*" ref={inputFileRef} onChange={handleImageUpload} />
-      <br />
-      {imageSrc && <img src={imageSrc} alt="Selected" style={{ maxWidth: '100%' }} />}
-      <br />
-      {textFromImage && <p>Text from Image: {textFromImage}</p>}
-      <br />
-
-      <input type="file" accept="video/*" onChange={handleVideoUpload} />
-      <br />
-      {selectedVideo && <p>Selected Video: {selectedVideo.name}</p>}
-      <br />
-
-      <button onClick={handleGenerateVideo}>Generate Video</button>
-      <br />
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <h2>Image to Video with Marquee</h2>
+      <div>
+        <p>Upload an image:</p>
+        <ImageUploader onDrop={onDrop} />
+      </div>
+      {image && <img src={image} alt="Uploaded" style={{ maxWidth: '100%' }} />}
+      {extractedText && <div>Extracted Text: {extractedText}</div>}
+      {
+        image &&
+        <button onClick={createVideo}>Create Video</button>}
     </div>
   );
 };
 
+const ImageUploader = ({ onDrop }) => {
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  return (
+    <div {...getRootProps()} style={dropzoneStyle}>
+      <input {...getInputProps()} />
+      {isDragActive ? <p>Drop the image here ...</p> : <p>Drag 'n' drop an image here, or click to select one</p>}
+    </div>
+  );
+};
+
+const dropzoneStyle = {
+  border: '2px dashed #ccc',
+  borderRadius: '4px',
+  padding: '20px',
+  textAlign: 'center',
+  cursor: 'pointer',
+};
+
 export default Video;
+
+
+

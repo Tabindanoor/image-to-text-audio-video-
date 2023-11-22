@@ -1,101 +1,109 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-const TextToVideo = () => {
-  const [imagePath, setImagePath] = useState('');
-  const [extractedText, setExtractedText] = useState('');
-  const videoRef = useRef(null);
-  const canvasRef = useRef(null);
+const Home = () => <h2>Home</h2>;
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+const Signup = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    reader.onload = () => {
-      setImagePath(reader.result);
-      extractText(reader.result);
-    };
+  const handleSignup = async () => {
+    try {
+      await axios.post('http://localhost:5000/signup', {
+        username,
+        password,
+      });
 
-    reader.readAsDataURL(file);
+      alert('User created successfully');
+    } catch (error) {
+      console.error(error);
+      alert('Error creating user');
+    }
   };
 
-  const extractText = (imageData) => {
-    // Use Tesseract.js or any other OCR library to extract text
-    // For simplicity, let's assume the text is directly provided
-    setExtractedText(imageData);
-  };
-
-  const createVideo = () => {
-    // if (!imagePath || !extractedText) {
-    //   alert('Please select an image and extract text first.');
-    //   return;
-    // }
-
-    const framesPerSecond = 30;
-    const seconds = 5;
-    const frames = framesPerSecond * seconds;
-    const frameInterval = 1000 / framesPerSecond;
-
-    const drawFrame = (ctx, frame) => {
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      ctx.fillStyle = 'black';
-      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-      ctx.fillStyle = 'white';
-      ctx.font = '24px Arial';
-      ctx.fillText(extractedText, ctx.canvas.width / 4, ctx.canvas.height / 2);
-    };
-
-    const startRecording = () => {
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
-
-      const mediaChunks = [];
-      const mediaRecorder = new MediaRecorder(canvas.captureStream(framesPerSecond));
-
-      mediaRecorder.ondataavailable = (event) => {
-        if (event.data.size > 0) {
-          mediaChunks.push(event.data);
-        }
-      };
-
-      mediaRecorder.onstop = () => {
-        const mediaBlob = new Blob(mediaChunks, { type: 'video/webm' });
-        const videoUrl = URL.createObjectURL(mediaBlob);
-        videoRef.current.src = videoUrl;
-      };
-
-      mediaRecorder.start();
-
-      for (let frame = 0; frame < frames; frame++) {
-        setTimeout(() => {
-          drawFrame(ctx, frame);
-          mediaRecorder.requestData();
-        }, frame * frameInterval);
-      }
-
-      setTimeout(() => {
-        mediaRecorder.stop();
-      }, frames * frameInterval);
-    };
-
-    // Rest of the component
-    return (
-      <div>
-        <h2>Text to Video</h2>
-        <input type="file" accept="image/*" onChange={handleImageChange} />
-        {imagePath && (
-          <>
-            <div>Extracted Text: {extractedText}</div>
-            <button onClick={startRecording}>Create Video</button>
-          </>
-        )}
-        <canvas ref={canvasRef} width={640} height={480} style={{ display: 'none' }} />
-        <video ref={videoRef} controls style={{ marginTop: '20px' }} />
-      </div>
-    );
-  };
-
-  return createVideo();
+  return (
+    <div>
+      <h2>Signup</h2>
+      <input
+        type="text"
+        placeholder="Username"
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleSignup}>Signup</button>
+    </div>
+  );
 };
 
-export default TextToVideo;
+const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    try {
+      await axios.post('http://localhost:5000/login', {
+        username,
+        password,
+      });
+
+      alert('Login successful');
+    } catch (error) {
+      console.error(error);
+      alert('Invalid credentials');
+    }
+  };
+
+  return (
+    <div>
+      <h2>Login</h2>
+      <input
+        type="text"
+        placeholder="Username"
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleLogin}>Login</button>
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/signup">Signup</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <hr />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
+export default App;
