@@ -4,18 +4,30 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Route, Routes,BrowserRouter} from "react-router-dom"
+import Register from './components/Register';
+import Login from './components/Login';
+import Video from './components/Video';
+import Image2Pdf from "./components/Image2Pdf"
+import Image2Text from "./components/Image2Text"
+import Navbar from './components/Navbar';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <BrowserRouter>
-  // <React.StrictMode>
-  //   <Routes>
-  //     <Route path='/' element={<App />} />
-  //   </Routes>
-  // </React.StrictMode>
-  // </BrowserRouter>
+  <BrowserRouter>
+
   <React.StrictMode>
-     <App/>
+    <Navbar/>
+    <Routes>
+    <Route path='/' element={<App />} />
+    <Route path="/signup" element={<Register />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/video" element={<Video />} />
+    <Route path="/image-2-pdf" element={<Image2Pdf />} />
+    <Route path="/image-2-text" element={<Image2Text />} />
+    </Routes>
   </React.StrictMode>
+  </BrowserRouter>
+ 
  
 );
 
