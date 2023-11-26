@@ -1,129 +1,88 @@
 
 
-import React from 'react'
-import { Link } from 'react-router-dom'
-
-const App = () => {
-  return (
-    <div>
-      <Link to={"/"}>app home </Link>
-      <Link to={"/login"}>login </Link>
-      <Link to={"/signup"}>signup </Link>
-      <Link to={"/video"}>video </Link>
-      <Link to={"/image-2-pdf"}>pdf </Link>
-      <Link to={"/image-2-text"}>text audio </Link>
-    </div>
-  )
-}
-
-export default App
-
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
-// const Home = () => <h2>Home</h2>;
-
-// const Signup = () => {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-
-//   const handleSignup = async () => {
-//     try {
-//       await axios.post('http://localhost:5000/signup', {
-//         username,
-//         password,
-//       });
-
-//       alert('User created successfully');
-//     } catch (error) {
-//       console.error(error);
-//       alert('Error creating user');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Signup</h2>
-//       <input
-//         type="text"
-//         placeholder="Username"
-//         onChange={(e) => setUsername(e.target.value)}
-//       />
-//       <input
-//         type="password"
-//         placeholder="Password"
-//         onChange={(e) => setPassword(e.target.value)}
-//       />
-//       <button onClick={handleSignup}>Signup</button>
-//     </div>
-//   );
-// };
-
-// const Login = () => {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-
-//   const handleLogin = async () => {
-//     try {
-//       await axios.post('http://localhost:5000/login', {
-//         username,
-//         password,
-//       });
-
-//       alert('Login successful');
-//     } catch (error) {
-//       console.error(error);
-//       alert('Invalid credentials');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Login</h2>
-//       <input
-//         type="text"
-//         placeholder="Username"
-//         onChange={(e) => setUsername(e.target.value)}
-//       />
-//       <input
-//         type="password"
-//         placeholder="Password"
-//         onChange={(e) => setPassword(e.target.value)}
-//       />
-//       <button onClick={handleLogin}>Login</button>
-//     </div>
-//   );
-// };
+// import React from 'react'
+// import { Link } from 'react-router-dom'
 
 // const App = () => {
 //   return (
-//     <Router>
-//       <div>
-//         <nav>
-//           <ul>
-//             <li>
-//               <Link to="/">Home</Link>
-//             </li>
-//             <li>
-//               <Link to="/signup">Signup</Link>
-//             </li>
-//             <li>
-//               <Link to="/login">Login</Link>
-//             </li>
-//           </ul>
-//         </nav>
+//     <div>
+//       <Link to={"/"}>app home </Link>
+//       <Link to={"/login"}>login </Link>
+//       <Link to={"/signup"}>signup </Link>
+//       <Link to={"/video"}>video </Link>
+//       <Link to={"/image-2-pdf"}>pdf </Link>
+//       <Link to={"/image-2-text"}>text audio </Link>
+//     </div>
+//   )
+// }
 
-//         <hr />
 
-//         <Routes>
-//           <Route path="/" element={<Home />} />
-//           <Route path="/signup" element={<Signup />} />
-//           <Route path="/login" element={<Login />} />
-//         </Routes>
-//       </div>
-//     </Router>
-//   );
-// };
 
-// export default App;
+// export default App
+
+
+
+import React, { useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Sphere } from "@react-three/drei";
+import { pointsInner, pointsOuter } from "./utils";
+
+const ParticleRing = () => {
+  return (
+    <div className="relative">
+      <Canvas
+        camera={{
+          position: [10, -7.5, -5],
+        }}
+        style={{ height: "100vh" }}
+        className="bg-slate-900"
+      >
+        <OrbitControls maxDistance={20} minDistance={10} />
+        <directionalLight />
+        <pointLight position={[-30, 0, -30]} power={10.0} />
+        <PointCircle />
+      </Canvas>
+
+      <h1 className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-slate-200 font-medium text-2xl md:text-5xl pointer-events-none">
+        Drag & Zoom
+      </h1>
+    </div>
+  );
+};
+
+const PointCircle = () => {
+  const ref = useRef(null);
+
+  useFrame(({ clock }) => {
+    if (ref.current?.rotation) {
+      ref.current.rotation.z = clock.getElapsedTime() * 0.05;
+    }
+  });
+
+  return (
+    <group ref={ref}>
+      {pointsInner.map((point) => (
+        <Point key={point.idx} position={point.position} color={point.color} />
+      ))}
+      {pointsOuter.map((point) => (
+        <Point key={point.idx} position={point.position} color={point.color} />
+      ))}
+    </group>
+  );
+};
+
+const Point = ({ position, color }) => {
+  return (
+    <Sphere position={position} args={[0.1, 10, 10]}>
+      <meshStandardMaterial
+        emissive={color}
+        emissiveIntensity={0.5}
+        roughness={0.5}
+        color={color}
+      />
+    </Sphere>
+  );
+};
+
+export default ParticleRing;
+
