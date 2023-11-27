@@ -21,11 +21,10 @@
 // export default App
 
 
-
 import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere } from "@react-three/drei";
-import { pointsInner, pointsOuter } from "./utils";
+import { pointsInner, pointsOuter } from "./components/Utils";
 
 const ParticleRing = () => {
   return (
@@ -44,7 +43,7 @@ const ParticleRing = () => {
       </Canvas>
 
       <h1 className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-slate-200 font-medium text-2xl md:text-5xl pointer-events-none">
-        Drag & Zoom
+       IMAGE TO TEXT EXTRACTOR
       </h1>
     </div>
   );
@@ -85,4 +84,3 @@ const Point = ({ position, color }) => {
 };
 
 export default ParticleRing;
-

@@ -1,9 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { FiMoon, FiSun } from "react-icons/fi";
+import ChangeMode from './ChangeMode';
+
+
 
 const Navbar = () => {
   return (
-    <div>
+    <div className=''>
         <nav className="bg-gray-800">
   <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div className="relative flex h-16 items-center justify-between">
@@ -41,6 +47,8 @@ const Navbar = () => {
             <Link to={"/image-2-text"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Image2Text & Image2Audio</Link>
             <Link to={"/video"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Image2Video</Link>
             <Link to={"/image-2-pdf"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Image2Pdf</Link>
+            <Link to={"/changemode"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">ChangeMode</Link>
+            {/* <ChangeMode/> */}
           </div>
         </div>
       </div>

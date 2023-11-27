@@ -10,13 +10,14 @@ import Video from './components/Video';
 import Image2Pdf from "./components/Image2Pdf"
 import Image2Text from "./components/Image2Text"
 import Navbar from './components/Navbar';
+import ChangeMode from './components/ChangeMode';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
 
   <React.StrictMode>
-    <Navbar/>
+    <Navbar />
     <Routes>
     <Route path='/' element={<App />} />
     <Route path="/signup" element={<Register />} />
@@ -24,6 +25,7 @@ root.render(
     <Route path="/video" element={<Video />} />
     <Route path="/image-2-pdf" element={<Image2Pdf />} />
     <Route path="/image-2-text" element={<Image2Text />} />
+    <Route path="/changemode" element={< ChangeMode/>} />
     </Routes>
   </React.StrictMode>
   </BrowserRouter>
