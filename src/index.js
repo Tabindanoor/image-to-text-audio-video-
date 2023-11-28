@@ -17,7 +17,8 @@ root.render(
   <BrowserRouter>
 
   <React.StrictMode>
-    <Navbar />
+
+    <Navbar/>
     <Routes>
     <Route path='/' element={<App />} />
     <Route path="/signup" element={<Register />} />

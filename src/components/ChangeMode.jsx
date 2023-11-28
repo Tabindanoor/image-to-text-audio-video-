@@ -9,7 +9,7 @@ const ChangeMode = () => {
   const [selected, setSelected] = useState("light");
   return (
     <div
-      className={`grid h-[200px] place-content-center px-4 transition-colors ${
+      className={`grid place-content-center px-4 transition-colors ${
         selected === "light" ? "bg-white" : "bg-slate-900"
       }`}
     >
