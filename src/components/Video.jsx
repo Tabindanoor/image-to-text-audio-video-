@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Tesseract from 'tesseract.js';
 import { useDropzone } from 'react-dropzone';
+import Navbar from './Navbar';
 
 const Video = () => {
   const [image, setImage] = useState(null);
   const [extractedText, setExtractedText] = useState('');
+
+
+  useEffect(() => {
+    // Cleanup function to remove canvas and video elements when the component unmounts
+    return () => {
+      const canvas = document.querySelector('canvas');
+      if (canvas) {
+        document.body.removeChild(canvas);
+      }
+
+      const video = document.querySelector('video');
+      if (video) {
+        document.body.removeChild(video);
+      }
+    };
+  }, []);
+
 
   const onDrop = (acceptedFiles) => {
     const reader = new FileReader();
@@ -80,8 +98,10 @@ const Video = () => {
         video.src = videoUrl;
         video.controls = true;
         document.body.appendChild(video);
-        document.body.style.width ="200px";
-        document.body.style.height="200px"
+        document.body.style.textAlign="center"
+        document.body.style.alignItems="center"
+        // document.body.style.width ="200px";
+        // document.body.style.height="200px"
       };
   
       mediaRecorder.start();
@@ -103,17 +123,26 @@ const Video = () => {
   
 
   return (
-    <div>
-      <h2>Image to Video with Marquee</h2>
+    <div className='text-center'>
+      <Navbar/>
+      <br />
+      <h2 className='text-3xl text-red-500 font-semibold'>Image to Video with Marquee</h2>
       <div>
-        <p>Upload an image:</p>
+        <p   className="animate-pulse font-bold focus:animate-none hover:animate-none inline-flex text-md 
+                bg-purple-400 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
+                >Upload an image:</p>
+             <br />
+             <br />
         <ImageUploader onDrop={onDrop} />
       </div>
       {image && <img src={image} alt="Uploaded" style={{ maxWidth: '100%' }} />}
-      {extractedText && <div>Extracted Text: {extractedText}</div>}
+      {extractedText && <div className='text-purple-700 text-2xl font-bold'>Extracted Text: <br /><p className='text-xl font-serif text-pink-300'>{extractedText}</p></div>}
       {
         image &&
-        <button onClick={createVideo}>Create Video</button>}
+        <button onClick={createVideo}
+        className="animate-pulse font-bold focus:animate-none hover:animate-none inline-flex text-md 
+        bg-blue-400 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
+       >Create Video</button>}
     </div>
   );
 };
@@ -122,7 +151,8 @@ const ImageUploader = ({ onDrop }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()} style={dropzoneStyle}>
+    <div {...getRootProps()} style={dropzoneStyle} className='text-green-600 font-mono '>
+
       <input {...getInputProps()} />
       {isDragActive ? <p>Drop the image here ...</p> : <p>Drag 'n' drop an image here, or click to select one</p>}
     </div>
@@ -138,6 +168,5 @@ const dropzoneStyle = {
 };
 
 export default Video;
-
 
 

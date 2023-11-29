@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import Tesseract from 'tesseract.js';
 import styled from 'styled-components';
-import VideoEditor from 'react-html5-video-editor';
+import Example from './ButtonHover';
+import Navbar from './Navbar';
+
 
 
 const Container = styled.div`
@@ -9,7 +11,7 @@ const Container = styled.div`
   margin: auto;
   text-align: center;
   padding: 20px;
-  background:orange;
+
 `;
 
 const Input = styled.input`
@@ -35,7 +37,6 @@ const Image2Text = () => {
   const [imageSrc, setImageSrc] = useState('');
   const [textFromImage, setTextFromImage] = useState('');
   const [error, setError] = useState('');
-  const [isVideoEditorOpen, setIsVideoEditorOpen] = useState(false);
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -70,29 +71,31 @@ const Image2Text = () => {
       const utterance = new SpeechSynthesisUtterance(textFromImage);
       synth.speak(utterance);
     }
-  };
-
-  const handleVideoEditorClose = () => {
-    setIsVideoEditorOpen(false);
-  };
-
-  const handleGenerateVideo = () => {
-    setIsVideoEditorOpen(true);
-  };
-
+  }
 
 
   return (
-    <Container>
-      <h1>Image to Text</h1>
+    <div>
+      <Navbar />
+       <Container>
+      
+
+      <h1 className='text-2xl font-extrabold font-serif '>Image to Text</h1>
+      <br />
 
       <Input
         type="file"
         accept="image/*"
         ref={inputFileRef}
         onChange={handleFileChange}
+        className='text-center justify-center bg-blue-400'
       />
-      <Label onClick={() => inputFileRef.current.click()}>Choose Image</Label>
+
+      <Label onClick={() => inputFileRef.current.click()} 
+      className="animate-bounce font-bold focus:animate-none hover:animate-none inline-flex text-md 
+      bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
+        
+        >Choose Image</Label>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
@@ -100,36 +103,27 @@ const Image2Text = () => {
         <div>
           <img src={imageSrc} alt="Selected" style={{ maxWidth: '100%' }} />
 
+<br />
           {textFromImage && (
             <div>
-              <h2>Text from Image:</h2>
-              <p>{textFromImage}</p>
+              <h2 className='text-2xl font-extrabold font-serif '>Text from Image:</h2><br />
+              <p className='text-xl text-green-400 font-semibold'>{textFromImage}</p>
+<br />
 
-              <Button onClick={speakText}>Speak Text</Button>
+
+              <Button onClick={speakText}
+                className=" font-bold focus:animate-none hover:animate-none inline-flex text-md 
+                bg-lime-400 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
+                 
+                 >Speak Text</Button>
 
             </div>
           )}
- </div>)}
-
-
-{
-  textFromImage &&
-  (
-
-    <Button onClick={handleGenerateVideo}>Generate Video</Button>
-  )
-}
-
-
-{ isVideoEditorOpen  && (
-            <VideoEditor
-              text={textFromImage}
-              onVideoEditClose={handleVideoEditorClose}
-            />
-          )}
-       
+ </div>)}     
 
     </Container>
+    </div>
+   
   );
 };
 

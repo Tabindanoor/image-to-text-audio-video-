@@ -25,10 +25,19 @@ import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere } from "@react-three/drei";
 import { pointsInner, pointsOuter } from "./components/Utils";
+import Navbar from "./components/Navbar";
+// import { useDarkMode } from "./context/DarkModeContext";
+// import ChangeMode from "./components/ChangeMode";
+
 
 const ParticleRing = () => {
+  // const { theme, toggleTheme } = useDarkMode();
   return (
     <div className="relative">
+      <Navbar/>
+       {/* <div className={`App ${theme === 'dark' ? 'dark' : ''}`}>
+      <ChangeMode theme={theme} toggleTheme={toggleTheme} />
+    </div> */}
       <Canvas
         camera={{
           position: [10, -7.5, -5],

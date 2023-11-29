@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import Tesseract from 'tesseract.js';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import Navbar from './Navbar';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const TextToPdf = ({ imagePath }) => {
   const [text, setText] = useState('');
 
-  const extractText = () => {
+  const extractText = async() => {
     Tesseract.recognize(
-      imagePath,
+      await imagePath,
       'eng',
       { logger: info => setText(text + info.word + ' ') }
     ).then(({ data: { text } }) => {
@@ -26,27 +27,31 @@ const TextToPdf = ({ imagePath }) => {
   return (
     <div>
       <h2>Text to PDF</h2>
-      <button onClick={extractText}>Extract Text</button>
-      <button onClick={createPdf}>Create PDF</button>
+       
+      <button
+      
+      className=" focus:animate-none hover:animate-none 
+            inline-flex text-md font-medium bg-indigo-700 mt-3 px-4 py-2 rounded-lg tracking-wide 
+            text-white"
+      onClick={extractText}>Extract Text</button>
+     
+        {text !== undefined  && (
+            <div>
+            <br />
+              <p className='text-xl text-green-400 font-semibold'>{text}</p>
+</div>)
+        }
+  
+  {/* &nbsp;&nbsp; */}
+  <br />
+        <button 
+      className=" focus:animate-none hover:animate-none 
+      inline-flex text-md font-medium bg-indigo-700 mt-3 px-4 py-2 rounded-lg tracking-wide 
+      text-white"
+      onClick={createPdf}>Create PDF</button>
     </div>
   );
 };
-
-// const TextToPpt = ({ text }) => {
-//   const createPpt = () => {
-//     // Basic approach: each line of text becomes a slide
-//     const pptContent = text.split('\n').map(line => ({ text: line }));
-//     const pptDefinition = { content: pptContent };
-//     pdfMake.createPdf(pptDefinition).download('textToPpt.pdf');
-//   };
-
-//   return (
-//     <div>
-//       {/* <h2>Text to PPT</h2> */}
-//       <button onClick={createPpt}>Create PPT</button>
-//     </div>
-//   );
-// };
 
 const Image2Pdf = () => {
   const [imagePath, setImagePath] = useState(null);
@@ -56,12 +61,16 @@ const Image2Pdf = () => {
   };
 
   return (
-    <div>
+    <div className='text-center '>
+      <Navbar/>
+      <br />
+      <h1 className='text-2xl text-orange-600  font-serif font-semibold'> Choose an Image </h1>
+<br />
       <input type="file" accept="image/*" onChange={handleImageChange} />
+      
       {imagePath && (
         <>
           <TextToPdf imagePath={imagePath} />
-          {/* <TextToPpt text="Extracted text will appear here" /> */}
         </>
       )}
     </div>

@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom'
 
 
 
+
 const Navbar = () => {
   
   return (
     <div className=''>
+  
+      {/* <ChangeMode/> */}
         <nav className="bg-gray-800">
   <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div className="relative flex h-16 items-center justify-between">
@@ -40,7 +43,11 @@ const Navbar = () => {
         <div className="hidden sm:ml-6 sm:block">
           <div className="flex space-x-4">
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-            <Link to={"/"} className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</Link>
+            <Link to={"/"} 
+                    className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
+                     bg-white mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page">
+                Home
+            </Link>
             <Link to={"/image-2-text"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Image2Text & Image2Audio</Link>
             <Link to={"/video"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Image2Video</Link>
             <Link to={"/image-2-pdf"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Image2Pdf</Link>
@@ -49,7 +56,7 @@ const Navbar = () => {
                                 inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
                                 text-white" >Login</Link>
             <Link to={"/signup"} 
-            class="animate-bounce focus:animate-none hover:animate-none 
+            className="animate-bounce focus:animate-none hover:animate-none 
             inline-flex text-md font-medium bg-indigo-700 mt-3 px-4 py-2 rounded-lg tracking-wide 
             text-white">  Signup</Link>
         
