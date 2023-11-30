@@ -26,6 +26,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere } from "@react-three/drei";
 import { pointsInner, pointsOuter } from "./components/Utils";
 import Navbar from "./components/Navbar";
+// import { ThemeProvider } from "./components/ThemeContext";
 // import { useDarkMode } from "./context/DarkModeContext";
 // import ChangeMode from "./components/ChangeMode";
 
@@ -33,7 +34,9 @@ import Navbar from "./components/Navbar";
 const ParticleRing = () => {
   // const { theme, toggleTheme } = useDarkMode();
   return (
+    <div>  
     <div className="relative">
+      {/* <ThemeProvider> */}
       <Navbar/>
        {/* <div className={`App ${theme === 'dark' ? 'dark' : ''}`}>
       <ChangeMode theme={theme} toggleTheme={toggleTheme} />
@@ -54,6 +57,8 @@ const ParticleRing = () => {
       <h1 className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-slate-200 font-medium text-2xl md:text-5xl pointer-events-none">
        IMAGE TO TEXT EXTRACTOR
       </h1>
+      {/* </ThemeProvider> */}
+    </div>
     </div>
   );
 };

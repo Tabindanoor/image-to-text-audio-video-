@@ -9,12 +9,16 @@ import Video from './components/Video';
 import Image2Pdf from "./components/Image2Pdf"
 import Image2Text from "./components/Image2Text"
 import Navbar from './components/Navbar';
+import ChangeMode from './components/ChangeMode'
+import { ThemeProvider } from './components/ThemeContext';
 // import Navbar from './components/Navbar';
 // import { DarkModeProvider } from './context/DarkModeContext';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
+<BrowserRouter>
+<ThemeProvider>
   <React.StrictMode>
     <Routes>
     <Route path='/' element={<App />} />
@@ -23,9 +27,12 @@ root.render(
     <Route path="/video" element={<Video />} />
     <Route path="/image-2-pdf" element={<Image2Pdf />} />
     <Route path="/image-2-text" element={<Image2Text />} />
-    <Route path="/navbar" element={<Navbar />} />
+    <Route path="/changemode" element={<ChangeMode />} />
+    {/* <Route path="/navbar" element={<Navbar />} /> */}
+
     </Routes>
     </React.StrictMode>
+    </ThemeProvider>
   </BrowserRouter>
  
  

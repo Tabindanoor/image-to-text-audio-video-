@@ -3,6 +3,8 @@ import Tesseract from 'tesseract.js';
 import styled from 'styled-components';
 import Example from './ButtonHover';
 import Navbar from './Navbar';
+import { useTheme } from './ThemeContext';
+import "./Login.css"
 
 
 
@@ -33,6 +35,8 @@ const Button = styled.button`
 `;
 
 const Image2Text = () => {
+  const { isDarkMode, toggleTheme } = useTheme();
+
   const inputFileRef = useRef(null);
   const [imageSrc, setImageSrc] = useState('');
   const [textFromImage, setTextFromImage] = useState('');
@@ -75,9 +79,15 @@ const Image2Text = () => {
 
 
   return (
-    <div>
+    // <div>
+    <div className='text-center'>      {/* Your other components and content */}
+    
       <Navbar />
-       <Container>
+    
+      <div className={isDarkMode ? 'dark-mode' : 'light-mode'}>
+      {/* <h1>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</h1> */}
+      <button className='border text-center p-2 rounded-xl animate-pulse' onClick={toggleTheme}>{isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</button>
+<Container>
       
 
       <h1 className='text-2xl font-extrabold font-serif '>Image to Text</h1>
@@ -122,6 +132,7 @@ const Image2Text = () => {
  </div>)}     
 
     </Container>
+    </div>
     </div>
    
   );
