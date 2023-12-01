@@ -40,8 +40,8 @@ const Navbar = () => {
         <div className="flex flex-shrink-0 items-center">
           <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company"/>
         </div>
-        <div className="hidden sm:ml-6 sm:block">
-          <div className="flex space-x-4">
+        <div className="hidden md:ml-6 sm:block">
+          <div className="flex space-x-6">
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
             <Link to={"/"} 
                     className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
@@ -83,7 +83,7 @@ const Navbar = () => {
   </div>
 
   {/* <!-- Mobile menu, show/hide based on menu state. --> */}
-  <div className="sm:hidden" id="mobile-menu">
+  <div className="md:hidden" id="mobile-menu">
     <div className="space-y-1 px-2 pb-3 pt-2">
       {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
       <Link to={"/"}  className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Home</Link>

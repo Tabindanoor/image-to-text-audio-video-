@@ -91,6 +91,7 @@ const Image2Text = () => {
       
 
       <h1 className='text-2xl font-extrabold font-serif '>Image to Text</h1>
+      <h1 className='text-2xl font-extrabold font-serif '>Image to Text</h1>
       <br />
 
       <Input
