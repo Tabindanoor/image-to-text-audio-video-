@@ -86,11 +86,10 @@ const Image2Text = () => {
     
       <div className={isDarkMode ? 'dark-mode' : 'light-mode'}>
       {/* <h1>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</h1> */}
-      <button className='border text-center p-2 rounded-xl animate-pulse' onClick={toggleTheme}>{isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</button>
+      <button className='border text-center p-2 rounded-xl mt-5 font-serif text-xl animate-pulse' onClick={toggleTheme}>{isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</button>
 <Container>
       
 
-      <h1 className='text-2xl font-extrabold font-serif '>Image to Text</h1>
       <h1 className='text-2xl font-extrabold font-serif '>Image to Text</h1>
       <br />
 
