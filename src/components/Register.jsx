@@ -3,6 +3,7 @@ import axios from 'axios';
 import "./Login.css"
 import Navbar from './Navbar';
 import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
     const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -10,6 +11,7 @@ const Register = () => {
   const [error, setError] = useState(false);
 
 
+  const navigate = useNavigate()
   const handleSignup = async () => {
     try {
       await axios.post('http://localhost:5000/signup', {
@@ -18,13 +20,14 @@ const Register = () => {
       });
    setSuccess(true)
    setSuccess(false)
+   navigate("/dashboard")
       // alert('User created successfully');
     } catch (error) {
       // console.error(error);
       // alert('Error creating user');
       setError(true);
       setError(false)
-      Navigate("/dashboard")
+     
     }
   };
   return (

@@ -182,7 +182,8 @@ const Login = () => {
             className="border-2 border-blue-300 rounded-xl p-2 mt-2"
           />
           <br />
-          <button
+          <div className="flex justify-between">
+             <button
             className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
             bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
             onClick={handleLogin}
@@ -197,6 +198,8 @@ const Login = () => {
           >
             Sign Up
           </Link>
+          </div>
+         
         </div>
       </div>
     </div>

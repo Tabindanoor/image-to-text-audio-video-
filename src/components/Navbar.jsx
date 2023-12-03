@@ -69,22 +69,24 @@ const Navbar = () => {
             <Link to={"/changemode"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">ChangeMode</Link>
           
             <div>
-            {isLoggedIn ? (
+            {/* {isLoggedIn ? ( */}
                 <div>
-                    <p>Welcome, {username}!</p>
+                    {/* <p>Welcome, {username}!</p> */}
                     <button className="animate-bounce focus:animate-none hover:animate-none 
             inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
-             text-white" onClick={handleLogout}>Logout</button>
+             text-white" > <Link to={"/login"}>LogOut</Link> </button>
                 </div>
-            ) : (
+            {/* ) : (
                 <div>
-                    {/* <label>
+                    <label>
                         Username:
                         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    </label> */}
-                  <button><Link to={"/login"} >Login</Link></button>  
+                    </label>
+                  <button  className="animate-bounce focus:animate-none hover:animate-none 
+            inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
+             text-white"><Link to={"/login"} >Login</Link></button>  
                 </div>
-            )}
+            )} */}
         </div>
 
             {/* <Link to={"/login"}     className="animate-bounce focus:animate-none hover:animate-none 
