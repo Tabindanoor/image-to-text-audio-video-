@@ -1,10 +1,25 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 
 
 
 const Navbar = () => {
+
+  const [username, setUsername] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+        // Assuming you have a logout API endpoint on your server
+        const response = await axios.post('http://localhost:3001/logout');
+        console.log(response.data);
+        setIsLoggedIn(false);
+    } catch (error) {
+        console.error(error);
+    }
+};
   
   return (
     <div className=''>
@@ -52,13 +67,33 @@ const Navbar = () => {
             <Link to={"/video"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Image2Video</Link>
             <Link to={"/image-2-pdf"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Image2Pdf</Link>
             <Link to={"/changemode"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">ChangeMode</Link>
-            <Link to={"/login"}     className="animate-bounce focus:animate-none hover:animate-none 
-                                inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
-                                text-white" >Login</Link>
-            <Link to={"/signup"} 
+          
+            <div>
+            {isLoggedIn ? (
+                <div>
+                    <p>Welcome, {username}!</p>
+                    <button className="animate-bounce focus:animate-none hover:animate-none 
+            inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
+             text-white" onClick={handleLogout}>Logout</button>
+                </div>
+            ) : (
+                <div>
+                    {/* <label>
+                        Username:
+                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    </label> */}
+                  <button><Link to={"/login"} >Login</Link></button>  
+                </div>
+            )}
+        </div>
+
+            {/* <Link to={"/login"}     className="animate-bounce focus:animate-none hover:animate-none 
+            inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
+             text-white" >Login</Link> */}
+            {/* <Link to={"/signup"} 
             className="animate-bounce focus:animate-none hover:animate-none 
             inline-flex text-md font-medium bg-indigo-700 mt-3 px-4 py-2 rounded-lg tracking-wide 
-            text-white">  Signup</Link>
+            text-white">  Signup</Link> */}
         
             {/* <ChangeMode/> */}
           </div>

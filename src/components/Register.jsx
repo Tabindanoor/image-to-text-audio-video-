@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import axios from 'axios';
 import "./Login.css"
 import Navbar from './Navbar';
+import { Navigate } from 'react-router-dom';
 const Register = () => {
     const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -23,11 +24,12 @@ const Register = () => {
       // alert('Error creating user');
       setError(true);
       setError(false)
+      Navigate("/dashboard")
     }
   };
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       <div className="container" >
       
         <div className="top"></div>
