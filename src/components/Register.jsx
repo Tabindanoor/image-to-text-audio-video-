@@ -33,16 +33,16 @@ const Register = () => {
 
   const handleSignup = async () => {
     try {
-      await axios.post('http://localhost:5000/signup', {
-        username,
-        password,
-      });
-      setSuccess(true);
-      navigate("/dashboard", { state: { username } });
+      const response = await axios.post('http://localhost:5000/signup', { username, password });
+      console.log(response.data.message);
+      setError('');
+      navigate("/dashboard",{username:username});
     } catch (error) {
-      setError(error.response.data.message || 'Error creating user');
+      setError(error.response.data.error);
     }
   };
+
+
   return (
     <div>
       {/* <Navbar/> */}
@@ -51,36 +51,17 @@ const Register = () => {
         <div className="top"></div>
         <div className="bottom"></div>
         <div className="center">
-  
-    <h2 className="text-center text-2xl font-semibold ">SignUp Page</h2><br />
-    {success && 
-          <p className="green-red-600 text-sm">Login Successful :)</p>
-        }
 
-        {error && 
-          <p className="text-red-600 text-sm">Invalid Credentails :(</p>
-        }
-
-    <input
-      type="text"
-      placeholder="Username"
-      onChange={(e) => setUsername(e.target.value)}
-      className="border-2 border-blue-300 rounded-xl p-2"
-
-    />
- 
-    <input
-      type="password"
-      placeholder="Password"
-      onChange={(e) => setPassword(e.target.value)}
+      <h2>Register</h2>
+      <div>{error && <p style={{ color: 'red' }}>{error}</p>}</div>
+      <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)}
+      className="border-2 border-blue-300 rounded-xl p-2" />
+      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}
       className="border-2 border-blue-300 rounded-xl p-2 mt-2"
-
-    />
-    <button onClick={handleSignup}
-      className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
-      bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
-
->Signup</button>
+      />
+      <button onClick={handleSignup}
+       className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
+      bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page">Register</button>
 
   </div>
   </div>

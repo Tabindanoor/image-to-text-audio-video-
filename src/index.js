@@ -22,15 +22,14 @@ root.render(
   <React.StrictMode>
     <Routes>
     <Route  path='/dashboard' element={<App />} />
-    <Route  path='/' element={<Login />} />
+    <Route  path='/' element={<Login />} /> 
     <Route path="/signup" element={<Register />} />
-    <Route path="/login" element={<Login />} />
+    {/* <Route path="/login" element={<Login />} /> */}
     <Route path="/video" element={<Video />} />
     <Route path="/image-2-pdf" element={<Image2Pdf />} />
     <Route path="/image-2-text" element={<Image2Text />} />
     <Route path="/changemode" element={<ChangeMode />} />
     {/* <Route path="/navbar" element={<Navbar />} /> */}
-
     </Routes>
     </React.StrictMode>
     </ThemeProvider>

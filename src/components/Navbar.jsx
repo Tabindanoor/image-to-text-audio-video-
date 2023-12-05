@@ -3,27 +3,8 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
-
-
 const Navbar = () => {
 
-  const [username, setUsername] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate()
-  const handleLogout = async () => {
-    try {
-        // Assuming you have a logout API endpoint on your server
-        const response = await axios.post('http://localhost:3001/logout');
-        console.log(response.data);
-      navigate("/login",{state:{username}});
-
-        setIsLoggedIn(false);
-    } catch (error) {
-        console.error(error);
-    }
-};
-  
   return (
     <div className=''>
   
@@ -70,41 +51,19 @@ const Navbar = () => {
             <Link to={"/video"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Image2Video</Link>
             <Link to={"/image-2-pdf"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Image2Pdf</Link>
             <Link to={"/changemode"} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">ChangeMode</Link>
-          
+                      
             <div>
             {/* {isLoggedIn ? ( */}
                 <div>
                     {/* <p>Welcome, {username}!</p> */}
                     <button className="animate-bounce focus:animate-none hover:animate-none 
             inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
-             text-white" > <Link to={"/login"}>LogOut</Link> </button>
-                {/* </div> */}
-                {/* <button onClick={handleLogout} className="animate-bounce focus:animate-none hover:animate-none 
-            inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
-             text-white" > LogOut </button> */}
+             text-white" > <Link to={"/"}>LogOut</Link> </button>
+                
                 </div>
-            {/* ) : (
-                <div>
-                    <label>
-                        Username:
-                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    </label>
-                  <button  className="animate-bounce focus:animate-none hover:animate-none 
-            inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
-             text-white"><Link to={"/login"} >Login</Link></button>  
-                </div>
-            )} */}
+           
         </div>
 
-            {/* <Link to={"/login"}     className="animate-bounce focus:animate-none hover:animate-none 
-            inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
-             text-white" >Login</Link> */}
-            {/* <Link to={"/signup"} 
-            className="animate-bounce focus:animate-none hover:animate-none 
-            inline-flex text-md font-medium bg-indigo-700 mt-3 px-4 py-2 rounded-lg tracking-wide 
-            text-white">  Signup</Link> */}
-        
-            {/* <ChangeMode/> */}
           </div>
         </div>
       </div>
@@ -117,7 +76,6 @@ const Navbar = () => {
             <button type="button" className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
               <span className="absolute -inset-1.5"></span>
               <span className="sr-only">Open user menu</span>
-              {/* <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/> */}
             </button>
           </div>
 
@@ -136,6 +94,7 @@ const Navbar = () => {
       <Link to={"/image-2-pdf"} className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Image2Pdf</Link>
       <Link to={"/login"} className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Login</Link>
       <Link to={"/signup"} className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">SignUp</Link>
+      <button className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide text-white" > <Link to={"/"}>LogOut</Link> </button>
     </div>
   </div>
 </nav>
