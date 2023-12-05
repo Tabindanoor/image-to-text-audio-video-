@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -9,12 +10,14 @@ const Navbar = () => {
 
   const [username, setUsername] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const navigate = useNavigate()
   const handleLogout = async () => {
     try {
         // Assuming you have a logout API endpoint on your server
         const response = await axios.post('http://localhost:3001/logout');
         console.log(response.data);
+      navigate("/login",{state:{username}});
+
         setIsLoggedIn(false);
     } catch (error) {
         console.error(error);
@@ -75,6 +78,10 @@ const Navbar = () => {
                     <button className="animate-bounce focus:animate-none hover:animate-none 
             inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
              text-white" > <Link to={"/login"}>LogOut</Link> </button>
+                {/* </div> */}
+                {/* <button onClick={handleLogout} className="animate-bounce focus:animate-none hover:animate-none 
+            inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide 
+             text-white" > LogOut </button> */}
                 </div>
             {/* ) : (
                 <div>

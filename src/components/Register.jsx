@@ -12,22 +12,35 @@ const Register = () => {
 
 
   const navigate = useNavigate()
+  // const handleSignup = async () => {
+  //   try {
+  //     await axios.post('http://localhost:5000/signup', {
+  //       username,
+  //       password,
+  //     });
+  //  setSuccess(true)
+  //  setSuccess(false)
+  //  navigate("/dashboard")
+  //     // alert('User created successfully');
+  //   } catch (error) {
+  //     // console.error(error);
+  //     // alert('Error creating user');
+  //     setError(true);
+  //     setError(false)
+     
+  //   }
+  // };
+
   const handleSignup = async () => {
     try {
       await axios.post('http://localhost:5000/signup', {
         username,
         password,
       });
-   setSuccess(true)
-   setSuccess(false)
-   navigate("/dashboard")
-      // alert('User created successfully');
+      setSuccess(true);
+      navigate("/dashboard", { state: { username } });
     } catch (error) {
-      // console.error(error);
-      // alert('Error creating user');
-      setError(true);
-      setError(false)
-     
+      setError(error.response.data.message || 'Error creating user');
     }
   };
   return (

@@ -130,7 +130,7 @@ const Login = () => {
         password,
       });
       setSuccess(true);
-      setSuccess(false);
+      // setSuccess(false);
     } catch (error) {
       setError(true);
       setError(false);
@@ -146,9 +146,10 @@ const Login = () => {
 
       // Login successful, navigate to the dashboard
       setSuccess(true);
-      navigate("/dashboard");
+      navigate("/dashboard",{state:{username}});
     } catch (error) {
-      setError(true);
+      // setError(true);
+      setError("invalid credentails");
     }
   };
 
