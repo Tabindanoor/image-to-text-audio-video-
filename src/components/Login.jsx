@@ -96,6 +96,20 @@ const Login = () => {
           >
             Sign Up
           </Link>
+          {/* <Link
+            to={"/signup"}
+            className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
+            bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
+          >
+            Sign Up
+          </Link>
+          <Link
+            to={"/signup"}
+            className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
+            bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
+          >
+            Sign Up
+          </Link> */}
           </div>
          
         </div>
