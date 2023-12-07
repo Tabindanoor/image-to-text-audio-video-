@@ -35,7 +35,7 @@ const Login = () => {
   // };
   const handleLogin = async () => {
     try {
-        await axios.post('http://localhost:5000/login', {  // Updated URL to '/login'
+        await axios.post('http://localhost:5000/login', {  
             username,
             password,
         });
