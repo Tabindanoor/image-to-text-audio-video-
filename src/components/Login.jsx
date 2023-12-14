@@ -12,38 +12,13 @@ const Login = () => {
   // Use the useHistory hook to get access to the history object
   const navigate = useNavigate();
 
-
-
-  // const handleLogin = async () => {
-  //   try {
-  //     await axios.post('http://localhost:5000/', {
-  //       username,
-  //       password,
-  //     });
-
-  //     // Login successful, navigate to the dashboard
-  //     setSuccess(true);
-  //     navigate("/dashboard",{state:{username}});
-  //   }
-  //    catch (error) {
-  //     // setError(true);
-  //     setUsername("");
-  //     setPassword("")
-  //     setError("invalid credentails");
-      
-  //   }
-  // };
   const handleLogin = async () => {
     try {
-        await axios.post('http://localhost:5000/login', {  
-            username,
-            password,
-        });
+        await axios.post('http://localhost:5001/login', {username,password });
 
         // Login successful, navigate to the dashboard
         setSuccess(true);
         navigate("/dashboard", { state: { username } });
-    } catch (error) {
         // setError(true);
         setUsername("");
         setPassword("")
@@ -96,20 +71,7 @@ const Login = () => {
           >
             Sign Up
           </Link>
-          {/* <Link
-            to={"/signup"}
-            className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
-            bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
-          >
-            Sign Up
-          </Link>
-          <Link
-            to={"/signup"}
-            className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
-            bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
-          >
-            Sign Up
-          </Link> */}
+        
           </div>
          
         </div>
@@ -119,3 +81,62 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+// import React,{useState} from 'react'
+// import axios from 'axios';
+// import "./Login.css"
+// import Navbar from './Navbar';
+// import { Navigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+// const Login = () => {
+//     const [username, setUsername] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [success, setSuccess] = useState(false);
+//   const [error, setError] = useState(false);
+
+//   const navigate = useNavigate()
+
+//   const handleSignup = async () => {
+//     try {
+//       const response = await axios.post('http://localhost:5001/login', { username, password });
+//       console.log(response.data.message);
+//       setError('');
+//       navigate("/dashboard",{username:username});
+//     } catch (error) {
+//       setError(error.response.data.error);
+//     }
+//   };
+
+
+//   return (
+//     <div>
+//       {/* <Navbar/> */}
+//       <div className="container" >
+      
+//         <div className="top"></div>
+//         <div className="bottom"></div>
+//         <div className="center">
+
+//       <h2>SignIn</h2>
+//       <div>{error && <p style={{ color: 'red' }}>{error}</p>}</div>
+//       <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)}
+//       className="border-2 border-blue-300 rounded-xl p-2" />
+//       <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}
+//       className="border-2 border-blue-300 rounded-xl p-2 mt-2"
+//       />
+//       <button onClick={handleSignup}
+//        className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
+//       bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page">Login</button>
+
+//   </div>
+//   </div>
+//     </div>
+    
+
+//   )
+// }
+
+// export default Login

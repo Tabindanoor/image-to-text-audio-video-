@@ -1,39 +1,18 @@
 import React,{useState} from 'react'
 import axios from 'axios';
 import "./Login.css"
-import Navbar from './Navbar';
-import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 const Register = () => {
     const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
 
   const navigate = useNavigate()
-  // const handleSignup = async () => {
-  //   try {
-  //     await axios.post('http://localhost:5000/signup', {
-  //       username,
-  //       password,
-  //     });
-  //  setSuccess(true)
-  //  setSuccess(false)
-  //  navigate("/dashboard")
-  //     // alert('User created successfully');
-  //   } catch (error) {
-  //     // console.error(error);
-  //     // alert('Error creating user');
-  //     setError(true);
-  //     setError(false)
-     
-  //   }
-  // };
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/signup', { username, password });
+      const response = await axios.post('http://localhost:5001/signup', { username, password });
       console.log(response.data.message);
       setError('');
       navigate("/dashboard",{username:username});

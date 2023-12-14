@@ -11,8 +11,6 @@ import Image2Text from "./components/Image2Text"
 import Navbar from './components/Navbar';
 import ChangeMode from './components/ChangeMode'
 import { ThemeProvider } from './components/ThemeContext';
-// import Navbar from './components/Navbar';
-// import { DarkModeProvider } from './context/DarkModeContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
