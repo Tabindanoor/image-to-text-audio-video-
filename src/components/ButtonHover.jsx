@@ -2,9 +2,9 @@ import React from "react";
 
 const Example = () => {
   return (
-    // <div className="grid min-h-[200px] place-content-center bg-slate-900 p-4">
+    <div className="grid min-h-[200px] place-content-center bg-slate-900 p-4">
       <DrawOutlineButton>Speak Text</DrawOutlineButton>
-    // </div>
+    </div>
   );
 };
 
