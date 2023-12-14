@@ -21,9 +21,13 @@ const Login = () => {
         navigate("/dashboard", { state: { username } });
     } catch (error) {
         // setError(true);
-        setUsername("");
-        setPassword("")
-        setError("Invalid credentials");
+
+
+
+        // is ko uncomment krna ha 
+        // setUsername("");
+        // setPassword("")
+        // setError("Invalid credentials");
     }
 };
   return (
