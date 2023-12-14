@@ -19,6 +19,7 @@ const Login = () => {
         // Login successful, navigate to the dashboard
         setSuccess(true);
         navigate("/dashboard", { state: { username } });
+    } catch (error) {
         // setError(true);
         setUsername("");
         setPassword("")
