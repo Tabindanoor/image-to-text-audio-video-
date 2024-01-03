@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-tailwind/react": "^2.1.8",
     "@react-three/drei": "^9.88.17",
     "@react-three/fiber": "^8.15.11",
     "@testing-library/jest-dom": "^5.17.0",
@@ -30,6 +31,7 @@
     "react-webcam": "^7.2.0",
     "styled-components": "^6.1.1",
     "tesseract.js": "^5.0.3",
+    "three": "^0.160.0",
     "utils": "^0.3.1",
     "web-vitals": "^2.1.4",
     "whammy": "^0.0.1"

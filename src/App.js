@@ -3,12 +3,13 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere } from "@react-three/drei";
 import { pointsInner, pointsOuter } from "./components/Utils";
 import Navbar from "./components/Navbar";
+// import Footer from "./components/Footer";
+import './App.css'
 
 const ParticleRing = () => {
-  // const { theme, toggleTheme } = useDarkMode();
   return (
    
-    <div className="relative"> 
+    <div className="relative App-header "> 
     <Navbar/>
       <Canvas
       
@@ -29,6 +30,7 @@ const ParticleRing = () => {
        IMAGE TO TEXT EXTRACTOR
       </h1>
       {/* </ThemeProvider> */}
+      {/* <Footer/> */}
     </div>
 
   );
@@ -64,9 +66,10 @@ const Point = ({ position, color }) => {
         roughness={0.5}
         color={color}
       />
-      {/* <Navbar/> */}
+      
     </Sphere>
   );
 };
 
 export default ParticleRing;
+

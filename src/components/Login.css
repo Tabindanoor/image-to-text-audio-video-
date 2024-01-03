@@ -60,7 +60,7 @@ body{
   position:absolute;
   width:400px;
   height:400px;
-  top:50%;left:50%;
+  top:50%;left:57%;
   margin-left:-200px;
   margin-top:-200px;
   display:flex;
@@ -84,7 +84,6 @@ body{
 }
 
 
-
 /* styles.css or your preferred stylesheet */
 .light-mode {
   background-color: #ffffff;
@@ -94,4 +93,23 @@ body{
 .dark-mode {
   background-color: #121212;
   color: #ffffff;
+}
+.top,
+.bottom {
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: fixed;
+    width: 100vw; 
+    /* height: 100vh;  */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* margin-top: -50vh;  */
+    /* transform-origin: 0 50%; */
+    /* transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1); */
+    /* z-index: 10; */
+    /* opacity: 0.65; */
+    /* transition-delay: 0.2s; */
+  }
 }

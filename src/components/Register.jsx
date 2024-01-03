@@ -39,7 +39,7 @@ const Register = () => {
       className="border-2 border-blue-300 rounded-xl p-2 mt-2"
       />
       <button onClick={handleSignup}
-       className="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium
+       className="animate-bounce focus:animate-none hover:animate-none inline-flex bg-green-400 text-md font-medium
       bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page">Register</button>
 
   </div>

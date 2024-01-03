@@ -8,7 +8,6 @@ import Login from './components/Login';
 import Video from './components/Video';
 import Image2Pdf from "./components/Image2Pdf"
 import Image2Text from "./components/Image2Text"
-import Navbar from './components/Navbar';
 import ChangeMode from './components/ChangeMode'
 import { ThemeProvider } from './components/ThemeContext';
 

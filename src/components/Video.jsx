@@ -7,7 +7,12 @@ const Video = () => {
   const [image, setImage] = useState(null);
   const [extractedText, setExtractedText] = useState('');
 
-
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh', // This ensures that the container takes up the full height of the viewport
+  };
   useEffect(() => {
     // Cleanup function to remove canvas and video elements when the component unmounts
     return () => {
@@ -100,6 +105,7 @@ const Video = () => {
         document.body.appendChild(video);
         document.body.style.textAlign="center"
         document.body.style.alignItems="center"
+        document.body.style ='containerStyle'
         // document.body.style.width ="200px";
         // document.body.style.height="200px"
       };
@@ -123,7 +129,7 @@ const Video = () => {
   
 
   return (
-    <div className='text-center'>
+    <div className='text-center mx-auto justify-center'>
       <Navbar/>
       <br />
       <h2 className='text-3xl text-red-500 font-semibold'>Image to Video with Marquee</h2>
@@ -151,7 +157,7 @@ const ImageUploader = ({ onDrop }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()} style={dropzoneStyle} className='text-green-600 font-mono '>
+    <div {...getRootProps()} style={dropzoneStyle} className='text-green-600 font-mono  p-12'>
 
       <input {...getInputProps()} />
       {isDragActive ? <p>Drop the image here ...</p> : <p>Drag 'n' drop an image here, or click to select one</p>}

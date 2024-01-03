@@ -103,7 +103,7 @@ const Image2Text = () => {
 
       <Label onClick={() => inputFileRef.current.click()} 
       className="animate-bounce font-bold focus:animate-none hover:animate-none inline-flex text-md 
-      bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
+      bg-sky-500 mt-3 px-4 py-2 rounded-lg tracking-wide text-red-400 dark:text-blue-500   " aria-current="page"
         
         >Choose Image</Label>
 
