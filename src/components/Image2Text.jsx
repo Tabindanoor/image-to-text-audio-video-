@@ -5,7 +5,7 @@ import Example from './ButtonHover';
 import Navbar from './Navbar';
 import { useTheme } from './ThemeContext';
 import "./Login.css"
-
+import './Background.css'
 
 
 const Container = styled.div`
@@ -132,7 +132,22 @@ const Image2Text = () => {
  </div>)}     
 
     </Container>
+    
     </div>
+    <div class="area h-12">
+			<ul class="circles">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
     </div>
    
   );
