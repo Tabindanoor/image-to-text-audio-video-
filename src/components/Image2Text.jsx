@@ -146,6 +146,9 @@ const Image2Text = () => {
 				<li></li>
 				<li></li>
 				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
 			</ul>
 		</div>
     </div>
