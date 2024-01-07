@@ -3,6 +3,7 @@ import Tesseract from 'tesseract.js';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -63,6 +64,7 @@ const Image2Pdf = () => {
   return (
     <div className='text-center '>
       <Navbar/>
+      <div className='px-12'>
       <br />
       <h1 className='text-2xl text-orange-600  font-serif font-semibold'> Choose an Image </h1>
 <br />
@@ -73,6 +75,9 @@ const Image2Pdf = () => {
           <TextToPdf imagePath={imagePath} />
         </>
       )}
+      </div>
+     
+      <Footer/>
     </div>
   );
 };

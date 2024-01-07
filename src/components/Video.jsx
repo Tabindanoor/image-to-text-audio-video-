@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Tesseract from 'tesseract.js';
 import { useDropzone } from 'react-dropzone';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const Video = () => {
   const [image, setImage] = useState(null);
@@ -149,6 +150,8 @@ const Video = () => {
         className="animate-pulse font-bold focus:animate-none hover:animate-none inline-flex text-md 
         bg-blue-400 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
        >Create Video</button>}
+
+       <Footer/>
     </div>
   );
 };

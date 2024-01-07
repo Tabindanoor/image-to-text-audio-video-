@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import { useTheme } from './ThemeContext';
 import "./Login.css"
 import './Background.css'
+import Footer from './Footer';
 
 
 const Container = styled.div`
@@ -134,7 +135,24 @@ const Image2Text = () => {
     </Container>
     
     </div>
-    
+    {/* <div class="area h-12 ">
+			<ul class="circles">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div> */}
+    <Footer/>
     </div>
    
   );
