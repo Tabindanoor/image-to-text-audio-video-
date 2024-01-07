@@ -80,7 +80,7 @@ const Image2Text = () => {
 
   return (
     // <div>
-    <div className='text-center'>      {/* Your other components and content */}
+    <div className='text-center vh-100 '>      {/* Your other components and content */}
     
       <Navbar />
     
@@ -134,23 +134,7 @@ const Image2Text = () => {
     </Container>
     
     </div>
-    <div class="area h-12">
-			<ul class="circles">
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-		</div>
+    
     </div>
    
   );
