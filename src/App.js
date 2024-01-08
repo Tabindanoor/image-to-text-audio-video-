@@ -5,6 +5,7 @@ import { pointsInner, pointsOuter } from "./components/Utils";
 import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 import './App.css'
+import Footer from "./components/Footer";
 
 const ParticleRing = () => {
   return (
@@ -30,7 +31,7 @@ const ParticleRing = () => {
        IMAGE TO TEXT EXTRACTOR
       </h1>
       {/* </ThemeProvider> */}
-      {/* <Footer/> */}
+      <Footer/>
     </div>
 
   );
