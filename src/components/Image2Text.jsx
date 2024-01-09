@@ -152,7 +152,8 @@ const Image2Text = () => {
 				<li></li>
 			</ul>
 		</div> */}
-    <Footer/>
+    {/* <div className='bottom-0'> <Footer/></div> */}
+   
     </div>
    
   );

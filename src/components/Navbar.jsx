@@ -33,7 +33,7 @@ const Navbar = () => {
         <div className="hidden md:ml-6 sm:block">
           <div className="flex space-x-6">
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-            <Link to={"/"} 
+            <Link to={"/dashboard"} 
                     className="animate-bounce focus:animate-none hover:animate-none inline-flex 
                      bg-white mt-3 px-4 py-2 rounded-lg tracking-wide text-black text-base" aria-current="page">
                 Home

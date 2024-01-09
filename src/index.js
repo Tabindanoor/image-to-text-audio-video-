@@ -10,6 +10,7 @@ import Image2Pdf from "./components/Image2Pdf"
 import Image2Text from "./components/Image2Text"
 import ChangeMode from './components/ChangeMode'
 import { ThemeProvider } from './components/ThemeContext';
+import Feedback from './components/Feedback';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -26,6 +27,7 @@ root.render(
     <Route path="/image-2-pdf" element={<Image2Pdf />} />
     <Route path="/image-2-text" element={<Image2Text />} />
     <Route path="/changemode" element={<ChangeMode />} />
+    <Route path="/feedback" element={<Feedback />} />
     {/* <Route path="/navbar" element={<Navbar />} /> */}
     </Routes>
     </React.StrictMode>

@@ -151,7 +151,7 @@ const Video = () => {
         bg-blue-400 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
        >Create Video</button>}
 
-       <Footer/>
+       {/* <Footer/> */}
     </div>
   );
 };

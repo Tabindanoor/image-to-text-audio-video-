@@ -31,7 +31,7 @@ const ParticleRing = () => {
        IMAGE TO TEXT EXTRACTOR
       </h1>
       {/* </ThemeProvider> */}
-      <Footer/>
+      {/* <Footer/> */}
     </div>
 
   );
