@@ -81,7 +81,7 @@ const Image2Text = () => {
 
   return (
     // <div>
-    <div className='text-center vh-100 '>      {/* Your other components and content */}
+    <div className='text-center  bg-[#69f1f1] '>      {/* Your other components and content */}
     
       <Navbar />
     
@@ -91,7 +91,7 @@ const Image2Text = () => {
 <Container>
       
 
-      <h1 className='text-2xl font-extrabold font-serif '>Image to Text</h1>
+      <h1 className='text-2xl font-extrabold  '>Image to Text</h1>
       <br />
 
       <Input
@@ -117,7 +117,7 @@ const Image2Text = () => {
 <br />
           {textFromImage && (
             <div>
-              <h2 className='text-2xl font-extrabold font-serif '>Text from Image:</h2><br />
+              <h2 className='text-2xl font-extrabold '>Text from Image:</h2><br />
               <p className='text-xl text-green-400 font-semibold'>{textFromImage}</p>
 <br />
 

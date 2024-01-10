@@ -62,11 +62,11 @@ const Image2Pdf = () => {
   };
 
   return (
-    <div className='text-center '>
+    <div className='text-center text-inherit  '>
       <Navbar/>
       <div className='px-12'>
       <br />
-      <h1 className='text-2xl text-orange-600  font-serif font-semibold'> Choose an Image </h1>
+      <h1 className='text-2xl text-orange-600   font-semibold'> Choose an Image </h1>
 <br />
       <input type="file" accept="image/*" onChange={handleImageChange} />
       
