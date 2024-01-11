@@ -59,11 +59,11 @@ const Feedback = () => {
           className="text-xl font-semibold text-white bg-purple-500 hover:bg-purple-700 py-2 px-4 rounded transition duration-300 transform hover:scale-105"
           onClick={handleSubmit}
         >
+          
           Submit Feedback
         </button>
       
       </div>
-      {/* <ButtonWrapper/> */}
       <Footer/>
     </div>
   );
