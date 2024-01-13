@@ -65,7 +65,6 @@ const Feedback = () => {
       
       </div>
       <Footer/>
-      <Footer/>
     </div>
   );
 };
