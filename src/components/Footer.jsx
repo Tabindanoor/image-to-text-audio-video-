@@ -63,7 +63,7 @@ import "./Background.css"
 
 const Footer = () => {
   return (
-    <div class="area  bottom-0 ">
+    <div class="area  ">
     <ul class="circles">
         <li></li>
         <li></li>

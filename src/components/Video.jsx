@@ -12,7 +12,7 @@ const Video = () => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100vh', // This ensures that the container takes up the full height of the viewport
+    // height: '100vh', // This ensures that the container takes up the full height of the viewport
   };
   useEffect(() => {
     // Cleanup function to remove canvas and video elements when the component unmounts
@@ -109,6 +109,8 @@ const Video = () => {
         document.body.style ='containerStyle'
         // document.body.style.width ="200px";
         // document.body.style.height="200px"
+        // document.body = <Footer/>
+
       };
   
       mediaRecorder.start();
@@ -151,7 +153,9 @@ const Video = () => {
         bg-blue-400 mt-3 px-4 py-2 rounded-lg tracking-wide text-black" aria-current="page"
        >Create Video</button>}
 
-       {/* <Footer/> */}
+      {/* <div className='bottom-0 -top-full'>
+        jehvegwf
+      </div> */}
     </div>
   );
 };
@@ -164,6 +168,7 @@ const ImageUploader = ({ onDrop }) => {
 
       <input {...getInputProps()} />
       {isDragActive ? <p>Drop the image here ...</p> : <p>Drag 'n' drop an image here, or click to select one</p>}
+
     </div>
   );
 };
