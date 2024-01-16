@@ -145,6 +145,7 @@ const Video = () => {
         <ImageUploader onDrop={onDrop} />
       </div>
       {image && <img src={image} alt="Uploaded" style={{ maxWidth: '100%' }} />}
+      {/* {image && <img src={image} alt="Uploaded" style={{ maxWidth: '100%' }} />} */}
       {extractedText && <div className='text-purple-700 text-2xl font-bold'>Extracted Text: <br /><p className='text-xl font-serif text-pink-300'>{extractedText}</p></div>}
       {
         image &&
