@@ -169,6 +169,7 @@ const ImageUploader = ({ onDrop }) => {
 
       <input {...getInputProps()} />
       {isDragActive ? <p>Drop the image here ...</p> : <p>Drag 'n' drop an image here, or click to select one</p>}
+      {/* {isDragActive ? <p>Drop the image here ...</p> : <p>Drag 'n' drop an image here, or click to select one</p>} */}
 
     </div>
   );
