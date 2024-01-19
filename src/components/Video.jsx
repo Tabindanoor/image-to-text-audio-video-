@@ -168,6 +168,7 @@ const ImageUploader = ({ onDrop }) => {
     <div {...getRootProps()} style={dropzoneStyle} className='text-green-600 font-mono  p-12'>
 
       <input {...getInputProps()} />
+      {/* <input {...getInputProps()} /> */}
       {isDragActive ? <p>Drop the image here ...</p> : <p>Drag 'n' drop an image here, or click to select one</p>}
 
     </div>
